@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './TopicsScreen.css';
+import * as topicsActions from '../store/topics/actions';
+import * as topicsSelectors from '../store/topics/reducer';
 
 class TopicsScreen extends Component {
-  render() {
-    return (
-      <h2>Where are my topics?</h2>
-    );
-  }
+  // view implementation here
 }
 
 // which props do we want to inject, given the global store state?
 function mapStateToProps(state) {
-  return {};
+  return {
+    rowsById: topicsSelectors.getTopicsByUrl(state),
+    rowsIdArray: topicsSelectors.getTopicsUrlArray(state)
+  };
 }
 
 export default connect(mapStateToProps)(TopicsScreen);
